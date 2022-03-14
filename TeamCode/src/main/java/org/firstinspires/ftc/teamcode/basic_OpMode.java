@@ -14,8 +14,8 @@ public class basic_OpMode extends OpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     basic_hardware robot = new basic_hardware();
-    public double drive;
-    public double turn;
+    public boolean slow;
+    public double slowvalue;
 
     @Override
     public void init() {
@@ -26,14 +26,22 @@ public class basic_OpMode extends OpMode {
 
     @Override
     public void loop() {
-
-            double x = gamepad1.left_stick_y; // Remember, this is reversed!
-            double y = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
-            double rx = gamepad1.right_stick_x;
+             if (gamepad1.a) {
+                 slow = true;
+                 slowvalue = 0.5;
+             }
+             if (gamepad1.b){
+                 slow = false;
+                 slowvalue = 1;
+             }
+            double x = gamepad1.right_stick_x; // Remember, this is reversed!
+            double y = -gamepad1.left_stick_x * slowvalue;
+            double rx = gamepad1.left_stick_y * slowvalue;
             robot.SetMotors(y, x, rx);
             telemetry.addData("Y:", y);
             telemetry.addData("X:", x);
             telemetry.addData("RX:", rx);
+            telemetry.addData("Slow Mode:", slow);
             telemetry.update();
 
             // Denominator is the largest motor power (absolute value) or 1
