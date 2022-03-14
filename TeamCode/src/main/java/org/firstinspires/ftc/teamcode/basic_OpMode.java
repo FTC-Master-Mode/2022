@@ -27,8 +27,8 @@ public class basic_OpMode extends OpMode {
     @Override
     public void loop() {
 
-            double y = -gamepad1.left_stick_y; // Remember, this is reversed!
-            double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
+            double x = gamepad1.left_stick_y; // Remember, this is reversed!
+            double y = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = gamepad1.right_stick_x;
             robot.SetMotors(y, x, rx);
             telemetry.addData("Y:", y);

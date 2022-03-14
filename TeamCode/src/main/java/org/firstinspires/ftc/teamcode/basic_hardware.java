@@ -20,9 +20,6 @@ public class basic_hardware{
         motorFrontRight = ahwMap.get(DcMotor.class, "RightDriveFront");
         motorBackRight = ahwMap.get(DcMotor.class, "RightDriveRear");
 
-        motorBackRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        motorBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-
         StopMotors();
         // Declare our motors
         // Reverse the right side motors
@@ -36,7 +33,6 @@ public class basic_hardware{
         double backLeftPower = (y - x + rx) / denominator;
         double frontRightPower = (y - x - rx) / denominator;
         double backRightPower = (y + x - rx) / denominator;
-
         motorFrontLeft.setPower(frontLeftPower);
         motorBackLeft.setPower(backLeftPower);
         motorFrontRight.setPower(frontRightPower);
