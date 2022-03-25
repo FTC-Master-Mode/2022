@@ -1,21 +1,17 @@
 package org.firstinspires.ftc.teamcode;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.basic_hardware;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="Basic OpMode", group="OpMode")
+@TeleOp(name = "Basic OpMode", group = "OpMode")
 public class basic_OpMode extends OpMode {
     // Declare OpMode members.
-    private ElapsedTime runtime = new ElapsedTime();
+    private final ElapsedTime runtime = new ElapsedTime();
+    public boolean slow = true;
+    public double slowvalue = .5;
+    public double[] motorValues = new double[4];
     basic_hardware robot = new basic_hardware();
-    public boolean slow;
-    public double slowvalue;
 
     @Override
     public void init() {
@@ -26,27 +22,35 @@ public class basic_OpMode extends OpMode {
 
     @Override
     public void loop() {
-             if (gamepad1.a) {
-                 slow = true;
-                 slowvalue = 0.5;
-             }
-             if (gamepad1.b){
-                 slow = false;
-                 slowvalue = 1;
-             }
-            double x = gamepad1.right_stick_x; // Remember, this is reversed!
-            double y = -gamepad1.left_stick_x * slowvalue;
-            double rx = gamepad1.left_stick_y * slowvalue;
-            robot.SetMotors(y, x, rx);
-            telemetry.addData("Y:", y);
-            telemetry.addData("X:", x);
-            telemetry.addData("RX:", rx);
-            telemetry.addData("Slow Mode:", slow);
-            telemetry.update();
 
-            // Denominator is the largest motor power (absolute value) or 1
-            // This ensures all the powers maintain the same ratio, but only when
-            // at least one is out of the range [-1, 1]
+        if (gamepad1.a) {
+            slow = false;
+            slowvalue = 1;
+        }
+        if (gamepad1.b) {
+            slow = true;
+            slowvalue = .5;
+        }
+        double x = (gamepad1.left_stick_x) * slowvalue; // Remember, this is reversed!
+        double y = gamepad1.left_stick_y * slowvalue;
+        double rx = gamepad1.right_stick_x * (slowvalue);
+        robot.SetMotors(y, x, rx);
+
+        telemetry.addData("Y", y);
+        telemetry.addData("X", x);
+        telemetry.addData("RX", rx);
+        telemetry.addData("Slow Mode", slow);
+        telemetry.addData("MotorFL", robot.motorFrontLeft.getPower());
+        telemetry.addData("MotorFR", robot.motorFrontRight.getPower());
+        telemetry.addData("MotorBL", robot.motorBackLeft.getPower());
+        telemetry.addData("MotorBR", robot.motorBackRight.getPower());
+
+        telemetry.update();
+        //0:FL, 1:BL, 2:FR, 3:BR
+
+        // Denominator is the largest motor power (absolute value) or 1
+        // This ensures all the powers maintain the same ratio, but only when
+        // at least one is out of the range [-1, 1]
 
 
     }
