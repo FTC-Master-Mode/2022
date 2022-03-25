@@ -13,12 +13,24 @@ public class basic_hardware{
     public DcMotor motorBackLeft = null;
     public DcMotor motorFrontRight = null;
     public DcMotor motorBackRight = null;
+    public DcMotor[] motorList=new DcMotor[4];
+    public double[] motorPowers=new double[4];
 
     public void init(HardwareMap ahwMap, Telemetry t) {
         motorFrontLeft = ahwMap.get(DcMotor.class, "LeftDriveFront");
         motorBackLeft = ahwMap.get(DcMotor.class, "LeftDriveRear");
         motorFrontRight = ahwMap.get(DcMotor.class, "RightDriveFront");
         motorBackRight = ahwMap.get(DcMotor.class, "RightDriveRear");
+        motorList[0]=motorFrontLeft;
+        motorList[1]=motorBackLeft;
+        motorList[2]=motorFrontRight;
+        motorList[3]=motorBackRight;
+        for (int i=0;i<=motorPowers.length-1;i++){
+            motorPowers[i]=0.0;
+        }
+
+        motorFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorBackRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
         StopMotors();
         // Declare our motors
@@ -33,6 +45,7 @@ public class basic_hardware{
         double backLeftPower = (y - x + rx) / denominator;
         double frontRightPower = (y - x - rx) / denominator;
         double backRightPower = (y + x - rx) / denominator;
+
         motorFrontLeft.setPower(frontLeftPower);
         motorBackLeft.setPower(backLeftPower);
         motorFrontRight.setPower(frontRightPower);
