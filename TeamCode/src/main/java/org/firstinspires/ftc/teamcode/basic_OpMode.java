@@ -9,7 +9,7 @@ public class basic_OpMode extends OpMode {
     // Declare OpMode members.
     private final ElapsedTime runtime = new ElapsedTime();
     public boolean slow = true;
-    public double slowvalue = .5;
+    public double slowValue = .5;
     public double[] motorValues = new double[4];
     basic_hardware robot = new basic_hardware();
 
@@ -25,15 +25,15 @@ public class basic_OpMode extends OpMode {
 
         if (gamepad1.a) {
             slow = false;
-            slowvalue = 1;
+            slowValue = 1;
         }
         if (gamepad1.b) {
             slow = true;
-            slowvalue = .5;
+            slowValue = .5;
         }
-        double x = (gamepad1.left_stick_x) * slowvalue; // Remember, this is reversed!
-        double y = gamepad1.left_stick_y * slowvalue;
-        double rx = gamepad1.right_stick_x * (slowvalue);
+        double x = (gamepad1.left_stick_x) * slowValue; // Remember, this is reversed!
+        double y = gamepad1.left_stick_y * slowValue;
+        double rx = gamepad1.right_stick_x * (slowValue);
         robot.SetMotors(y, x, rx);
 
         telemetry.addData("Y", y);

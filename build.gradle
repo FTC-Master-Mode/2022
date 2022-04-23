@@ -13,9 +13,10 @@ buildscript {
         mavenCentral()
         google()
         jcenter()
+        // jcenter() not receiving updates: newer library versions may be available elsewhere
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.1.3'
     }
 }
 
@@ -26,6 +27,7 @@ allprojects {
         mavenCentral()
         google()
         jcenter()
+        // jcenter() not receiving updates: newer library versions may be available elsewhere
     }
 }
 
@@ -38,6 +40,7 @@ repositories {
 }
 
 dependencies {
+    //new version 6.2.0 is available 7.1.0 not sure if should be changed
     doc 'org.firstinspires.ftc:Hardware:6.2.0'
     doc 'org.firstinspires.ftc:RobotCore:6.2.0'
     doc 'org.firstinspires.ftc:FtcCommon:6.2.0'
