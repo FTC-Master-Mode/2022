@@ -15,7 +15,7 @@ public class basic_OpMode extends OpMode {
     public boolean slow = true;
     public double slowValue = .5;
     public double[] motorValues = new double[4];
-    basic_hardware robot = new basic_hardware();
+    basic_hardware robot = new basic_hardware(this, true);
 
     @Override
     public void init() {
