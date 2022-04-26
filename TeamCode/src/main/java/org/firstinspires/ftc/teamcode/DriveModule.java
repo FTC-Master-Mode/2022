@@ -23,10 +23,11 @@ public class DriveModule {
         this.moduleSide = moduleSide;
 
 
+
         //TODO: fix hardwareMap
         if (moduleSide == ModuleSide.RIGHT) {
             motor1 = hardwareMap.dcMotor.get("RightDriveTopMotor");
-            motor2 = hardwareMap.dcMotor.get("RightDriveBottomMotorRear");
+            motor2 = hardwareMap.dcMotor.get("RightDriveBottomMotor");
             positionVector = new Vector2d((double)18/2, 0); //points from robot center to right module
         } else {
             motor1 = hardwareMap.dcMotor.get("LeftDriveTopMotor");
