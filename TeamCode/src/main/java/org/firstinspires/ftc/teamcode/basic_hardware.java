@@ -19,11 +19,14 @@ public class basic_hardware{
     public DcMotor[] motorList=new DcMotor[4];
     public double[] motorPowers=new double[4];
     HardwareMap hardwareMap;
+    DriveController driveController;
+
 
     public basic_hardware(OpMode opMode, boolean isAuto) {
         this.hardwareMap = opMode.hardwareMap;
         this.telemetry = opMode.telemetry;
         this.opMode = opMode;
+        driveController = new DriveController(this);
     }
 
     public void init(HardwareMap ahwMap, Telemetry telemetry) {
