@@ -26,7 +26,7 @@ public class basic_OpMode extends OpMode {
 
     @Override
     public void loop() {
-/*
+
         if (gamepad1.a) {
             slow = false;
             slowValue = 1;
@@ -54,7 +54,7 @@ public class basic_OpMode extends OpMode {
         // Denominator is the largest motor power (absolute value) or 1
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
-*/
+
 
     }
 }

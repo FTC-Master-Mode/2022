@@ -17,6 +17,7 @@ public class Vector2d {
         this.fixFloatingPointErrors();
 
     }
+
     public void fixFloatingPointErrors() {
         if (Math.abs(this.x) < 1e-5) {
             this.x = 0;
@@ -25,4 +26,5 @@ public class Vector2d {
             this.y = 0;
         }
     }
+
 }
