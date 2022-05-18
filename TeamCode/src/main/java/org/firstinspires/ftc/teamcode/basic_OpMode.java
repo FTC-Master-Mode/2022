@@ -12,7 +12,6 @@ public class basic_OpMode extends OpMode {
     public basic_hardware robot = new basic_hardware();
     public double topPower;
     public double bottomPower;
-    //public double xAxis = gamepad1.left_stick_x;
     public double yAxis = gamepad1.left_stick_y;
 
     @Override
@@ -22,12 +21,15 @@ public class basic_OpMode extends OpMode {
 
     @Override
     public void loop() {
-        if (gamepad1.left_stick_y != 0) {
+        if (yAxis > 0) {
             topPower =  yAxis;
-            bottomPower =  (yAxis - .02);
+            bottomPower =  (yAxis);
+        } else if (yAxis < 0){
+            topPower =  yAxis;
+            bottomPower =  yAxis;
         } else {
-            topPower = 0.0;
-            bottomPower = 0.0;
+            bottomPower = 0;
+            topPower = 0;
         }
         robot.topMotor.setPower(topPower);
         robot.bottomMotor.setPower(bottomPower);
